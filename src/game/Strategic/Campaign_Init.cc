@@ -98,6 +98,8 @@ void BuildUndergroundSectorInfoList()
 	}
 }
 
+Observable<> OnInitNewCampaign = {};
+
 //This is the function that is called only once, when the player begins a new game.  This will calculate
 //starting numbers of the queen's army in various parts of the map, which will vary from campaign to campaign.
 //This is also highly effected by the game's difficulty setting.
@@ -122,4 +124,5 @@ void InitNewCampaign()
 
 	InitStrategicStatus();
 
+	OnInitNewCampaign();
 }
