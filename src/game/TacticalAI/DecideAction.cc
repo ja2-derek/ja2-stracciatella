@@ -1990,6 +1990,7 @@ INT8 DecideActionRed(SOLDIERTYPE *pSoldier, UINT8 ubUnconsciousOK)
 								{
 									// abort! abort!
 									pSoldier->usActionData = NOWHERE;
+									SLOGI("avoiding ambush");
 								}
 							}
 						}

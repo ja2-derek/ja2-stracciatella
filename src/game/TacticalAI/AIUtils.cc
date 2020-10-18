@@ -1203,6 +1203,7 @@ static INT16 FindClosestClimbPointAvailableToAI(SOLDIERTYPE* pSoldier, INT16 sSt
 		if (pSoldier->bOrders == ONGUARD || pSoldier->bOrders == CLOSEPATROL)
 		{
 			//Make it so he cant climb down off the roof
+			SLOGI("can't climb down");
 			return NOWHERE;
 		}
 	}
