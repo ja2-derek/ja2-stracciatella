@@ -7,7 +7,7 @@
 
 // XXX: GameRes.h should be integrated to ContentManager
 #include "game/GameRes.h"
-
+#include <chrono>
 // XXX
 #include "game/GameState.h"
 
@@ -486,6 +486,7 @@ void DefaultContentManager::deleteTempFile(const ST::string& filename) const
  * If file is not found, try to find the file in libraries located in 'Data' directory; */
 SGPFile* DefaultContentManager::openGameResForReading(const ST::string& filename) const
 {
+	auto s = std::chrono::high_resolution_clock::now();
 	{
 		RustPointer<File> file = FileMan::openFileForReading(filename);
 		if (file)
@@ -505,6 +506,9 @@ SGPFile* DefaultContentManager::openGameResForReading(const ST::string& filename
 	SGPFile *file = new SGPFile{};
 	file->flags = SGPFILE_NONE;
 	file->u.vfile = vfile.release();
+	auto t = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t-s);
+	SLOGI(ST::format("VfsFile_Open took {} us", duration.count()));
 	return file;
 }
 
@@ -537,7 +541,12 @@ bool DefaultContentManager::doesGameResExists(const ST::string& filename) const
 			file.reset(File_open(path.c_str(), FILE_OPEN_READ));
 			if (!file)
 			{
+				auto s = std::chrono::high_resolution_clock::now();
 				RustPointer<VfsFile> vfile(VfsFile_open(m_vfs.get(), filename.c_str()));
+
+				auto t = std::chrono::high_resolution_clock::now();
+				auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t-s);
+				SLOGI(ST::format("VfsFile_open took {} us", duration.count()));
 				return static_cast<bool>(vfile);
 			}
 		}
