@@ -36,7 +36,7 @@
 #include "Vehicles.h"
 #include "Shading.h"
 #include "VSurface.h"
-#include "GameState.h"
+#include "GameMode.h"
 
 #include "EditScreen.h"
 #include "JAScreens.h"
@@ -97,7 +97,7 @@ try
 
 	InitMercPopupBox( );
 
-	if(GameState::getInstance()->isEditorMode())
+	if(GameMode::getInstance()->isEditorMode())
 	{
 		//UNCOMMENT NEXT LINE TO ALLOW FORCE UPDATES...
 		//LoadGlobalSummary();
@@ -107,7 +107,7 @@ try
 		}
 	}
 
-	switch (GameState::getInstance()->getMode())
+	switch (GameMode::getInstance()->getMode())
 	{
 		case GAME_MODE_EDITOR:
 			SLOGI("Beginning JA2 using -editor commandline argument...");
