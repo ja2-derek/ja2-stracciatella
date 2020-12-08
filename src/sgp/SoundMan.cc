@@ -19,6 +19,7 @@
 
 #include <SDL.h>
 #include <string_theory/string>
+#include <string_theory/format>
 
 #include <algorithm>
 #include <assert.h>
@@ -686,7 +687,7 @@ static SAMPLETAG* SoundLoadBuffer(UINT8* inMemoryBuffer, UINT32 uiBufferSize, ma
 		SLOGD("SoundLoadBuffer Success");
 		return s;
 	} catch (const std::runtime_error& err) {
-		SLOGE("SoundLoadBuffer Error: {}", err.what());
+		SLOGE(ST::format("SoundLoadBuffer Error: {}", err.what()));
 		return NULL;
 	}
 }
@@ -855,7 +856,7 @@ static void SoundFreeSample(SAMPLETAG* s)
 {
 	if (!(s->uiFlags & SAMPLE_ALLOCATED)) return;
 
-	SLOGD("SoundFreeSample: Freeing sample %d", s - pSampleList);
+	SLOGD(ST::format("SoundFreeSample: Freeing sample {}", s - pSampleList));
 
 	assert(s->uiInstances == 0);
 
@@ -934,7 +935,7 @@ static void SoundCallback(void* userdata, Uint8* stream, int len)
 				const INT16* src;
 				auto rbResult = ma_pcm_rb_acquire_read(Sound->pRingBuffer, &samples, (void**)&src);
 				if (rbResult != MA_SUCCESS) {
-					SLOGE("Could not aquire read pointer for channel %d: %s", Sound - pSoundList, ma_result_description(rbResult));
+					SLOGE(ST::format("Could not acquire read pointer for channel {}: {}", Sound - pSoundList, ma_result_description(rbResult)));
 					continue;
 				}
 

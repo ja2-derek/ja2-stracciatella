@@ -78,7 +78,11 @@ static void InitNPCs()
 			continue;
 		}
 
-		UINT8 sector = placement->pickPlacementSector();
+		INT16 sector = placement->pickPlacementSector();
+		if (sector < 0)
+		{       // NPC has no sector placement
+			continue;
+		}
 		if (placement->useAlternateMap)
 		{
 			SectorInfo[sector].uiFlags |= SF_USE_ALTERNATE_MAP;

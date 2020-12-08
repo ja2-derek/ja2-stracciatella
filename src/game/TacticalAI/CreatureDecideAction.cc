@@ -1221,11 +1221,11 @@ static INT8 CreatureDecideActionBlack(SOLDIERTYPE* pSoldier)
 			{
 				pSoldier->bAimShotLocation = AIM_SHOT_RANDOM;
 			}
-			SLOGD("%d(%s) %s %d(%s) at gridno %d (%d APs aim)\n",
+			SLOGD(ST::format("{}({}) {} {}({}) at gridno {} ({} APs aim)\n",
 				pSoldier->ubID, pSoldier->name.c_str(),
 				(ubBestAttackAction == AI_ACTION_FIRE_GUN)?"SHOOTS":((ubBestAttackAction == AI_ACTION_TOSS_PROJECTILE)?"TOSSES AT":"STABS"),
 				BestAttack.opponent, BestAttack.opponent->name.c_str(),
-				BestAttack.sTarget, BestAttack.ubAimTime);
+				BestAttack.sTarget, BestAttack.ubAimTime));
 			return(ubBestAttackAction);
 		}
 	}

@@ -1055,11 +1055,13 @@ void LoadSavedGame(UINT8 const save_slot_id)
 		auto placement = GCM->getNpcPlacement(SKYRIDER);
 		if (placement)
 		{
-			auto sector = placement->pickPlacementSector();
-
-			if (placement->useAlternateMap) SectorInfo[sector].uiFlags |= SF_USE_ALTERNATE_MAP;
-			x = SECTORX(sector);
-			y = SECTORY(sector);
+			INT16 sector = placement->pickPlacementSector();
+			if (sector > 0)
+			{
+				if (placement->useAlternateMap) SectorInfo[sector].uiFlags |= SF_USE_ALTERNATE_MAP;
+				x = SECTORX(sector);
+				y = SECTORY(sector);
+			}
 		}
 		MERCPROFILESTRUCT& p = GetProfile(SKYRIDER);
 		p.sSectorX = x;
