@@ -74,7 +74,7 @@ void HandleMilitiaPromotions()
 		if (s.ubMilitiaKills == 0) continue;
 
 		UINT8 militia_rank = SoldierClassToMilitiaRank(s.ubSoldierClass);
-		if (militia_rank >= MAX_MILITIA_LEVELS)      throw std::logic_error("invalid militia rank");
+		if (militia_rank >= MAX_MILITIA_LEVELS)      SLOGW(ST::format("invalid militia rank", militia_rank));
 
 		UINT8 const promotions   = CheckOneMilitiaForPromotion(gWorldSectorX, gWorldSectorY, militia_rank, s.ubMilitiaKills);
 		if (promotions != 0)

@@ -242,6 +242,7 @@ static void DecideActiveTerrorists()
 	{
 		if (Chance(chance)) ++n_additional_terrorists;
 	}
+	n_additional_terrorists = MIN(n_additional_terrorists, 3);
 
 	UINT8 terrorist_placement[MAX_ADDITIONAL_TERRORISTS];
 	for (UINT8 n_terrorists_added = 0; n_terrorists_added != n_additional_terrorists;)

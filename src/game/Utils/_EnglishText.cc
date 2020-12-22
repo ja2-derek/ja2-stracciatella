@@ -1309,7 +1309,7 @@ static const ST::string s_eng_pDayStrings = "Day";
 
 static const ST::string s_eng_pSenderNameList[pSenderNameList_SIZE] =
 {
-	"Enrico",
+	"Dunlap",
 	"Psych Pro Inc",
 	"Help Desk",
 	"Psych Pro Inc",
