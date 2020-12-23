@@ -1,0 +1,32 @@
+/**
+ * Skill checks to successfully combine items.
+ * Fields:
+ *  - item: internal name of the item used as attachment
+ *  - itemClass: internal name of the class of the base item being attached to
+ *  - skillCheck: the type of skills check. It must be one of the SkillChecks enum (see SkillCheck.h).
+ *  - skillCheckMod: percentage adjustment added to the skill checks chance of success
+ */
+[
+    {"item": "SILENCER",        "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "SNIPERSCOPE",     "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "LASERSCOPE",      "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "BIPOD",           "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "UNDER_GLAUNCHER", "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "DUCKBILL",        "itemClass": "IC_GUN", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "SPRING_AND_BOLT_UPGRADE", "itemClass": "IC_GUN", "skillCheck": "ATTACHING_SPECIAL_ITEM_CHECK", "skillCheckMod": 0},
+    {"item": "GUN_BARREL_EXTENDER",     "itemClass": "IC_GUN", "skillCheck": "ATTACHING_SPECIAL_ITEM_CHECK", "skillCheckMod": 0},
+    {"item": "DETONATOR",      "itemClass": "IC_BOMB", "skillCheck": "ATTACHING_DETONATOR_CHECK",        "skillCheckMod": 0},
+    {"item": "REMDETONATOR",   "itemClass": "IC_BOMB", "skillCheck": "ATTACHING_REMOTE_DETONATOR_CHECK", "skillCheckMod": -10},
+    {"item": "REMDETONATOR",   "itemClass": "IC_BOMB", "skillCheck": "ATTACHING_REMOTE_DETONATOR_CHECK", "skillCheckMod": -10},
+    {"item": "XRAY_BULB",      "itemClass": "IC_NONE", "skillCheck": "ATTACHING_SPECIAL_ELECTRONIC_ITEM_CHECK", "skillCheckMod": -15},
+    {"item": "COPPER_WIRE",    "itemClass": "IC_NONE", "skillCheck": "ATTACHING_SPECIAL_ELECTRONIC_ITEM_CHECK", "skillCheckMod":  20},
+    {"item": "CERAMIC_PLATES", "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    // attachment extras
+    {"item": "NIGHTGOGGLES", "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "UVGOGGLES",    "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "SUNGOGGLES",   "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "ROBOT_REMOTE_CONTROL", "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "ADRENALINE_BOOSTER", "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "REGEN_BOOSTER",      "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0},
+    {"item": "BREAK_LIGHT",        "itemClass": "IC_ARMOUR", "skillCheck": "NO_CHECK", "skillCheckMod": 0}
+]

@@ -1,0 +1,202 @@
+/**
+ * Lists all the valid item combinations. Items are combinations via the attachment screen
+ * widget. There are 3 main types of combination mechanisms:
+ *  1) Attachments - items becomes an attachment in the base item. This is reversible.
+ *  2) Merge - one item is merged into another, resulting in a new merged item.
+ *  3) Combo merge - "ingredient" items are added as attachments to the base. Once all
+ *                   ingredients are present, a combo merge is performed resulting in a
+ *                   new item.
+ *
+ * Fields:
+ *  - type: type of item combination. It must be one of:
+ *      - ATTACH:     (attach) simply clinging one item onto another
+ *      - LAUNCHABLE: (attach) items is mounted as a grenade to be launched
+ *      - COMBINE_POINTS:   (merge) items of the same type merged into one slot, combining their status points
+ *      - TREAT_ARMOUR:     (merge) applying coating to armours; doesn't care about the status of the attachment
+ *      - DESTRUCTION:      (merge) all items disappear on merge
+ *      - EXPLOSIVE:        (merge) requires explosives skill check to successfully merge item
+ *      - EASY_MERGE:       (merge) no skills check
+ *      - ELECTRONIC_MERGE: (merge) requires electronics skill check
+ *      - COMBO_MERGE: (combo) merging of multiple items
+ *  - baseItem: the internal name of the item being attached to
+ *  - item: (attach and merge) the internal name of the item used as attachment
+ *  - attachments: (combo only) array (of 2) of internal names ingredient attachment items.
+ *  - result: (merge and combo) internal name of the item resulting from the merge
+ *  - isExtra: (attach only) if it is available only when the game policy allows extra attachments
+ */
+[
+    /**
+     * Simple attachments
+     */
+    {"type": "ATTACH", "item": "DETONATOR", "baseItem": "TNT"},
+    {"type": "ATTACH", "item": "DETONATOR", "baseItem": "HMX"},
+    {"type": "ATTACH", "item": "DETONATOR", "baseItem": "C1"},
+    {"type": "ATTACH", "item": "DETONATOR", "baseItem": "C4"},
+
+    {"type": "ATTACH", "item": "REMDETONATOR", "baseItem": "TNT"},
+    {"type": "ATTACH", "item": "REMDETONATOR", "baseItem": "HMX"},
+    {"type": "ATTACH", "item": "REMDETONATOR", "baseItem": "C1"},
+    {"type": "ATTACH", "item": "REMDETONATOR", "baseItem": "C4"},
+
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "FLAK_JACKET"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "FLAK_JACKET_18"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "FLAK_JACKET_Y"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR_VEST"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR_VEST_18"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR_VEST_Y"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "SPECTRA_VEST"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "SPECTRA_VEST_18"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "SPECTRA_VEST_Y"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR2_VEST"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR2_VEST_18"},
+    {"type": "ATTACH", "item": "CERAMIC_PLATES", "baseItem": "KEVLAR2_VEST_Y"},
+
+    {"type": "ATTACH", "item": "SPRING",      "baseItem": "ALUMINUM_ROD"},
+    {"type": "ATTACH", "item": "QUICK_GLUE",  "baseItem": "STEEL_ROD"},
+    {"type": "ATTACH", "item": "DUCT_TAPE",   "baseItem": "STEEL_ROD"},
+    {"type": "ATTACH", "item": "XRAY_BULB",   "baseItem": "FUMBLE_PAK"},
+    {"type": "ATTACH", "item": "CHEWING_GUM", "baseItem": "FUMBLE_PAK"},
+    {"type": "ATTACH", "item": "BATTERIES",   "baseItem": "XRAY_DEVICE"},
+    {"type": "ATTACH", "item": "COPPER_WIRE", "baseItem": "LAME_BOY"},
+
+    /**
+     * Attachment extras
+     */
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "STEEL_HELMET",      "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "KEVLAR_HELMET",     "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "KEVLAR_HELMET_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "KEVLAR_HELMET_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "SPECTRA_HELMET",    "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "SPECTRA_HELMET_18", "isExtra": true},
+    {"type": "ATTACH", "item": "NIGHTGOGGLES", "baseItem": "SPECTRA_HELMET_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "STEEL_HELMET",      "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "KEVLAR_HELMET",     "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "KEVLAR_HELMET_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "KEVLAR_HELMET_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "SPECTRA_HELMET",    "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "SPECTRA_HELMET_18", "isExtra": true},
+    {"type": "ATTACH", "item": "UVGOGGLES", "baseItem": "SPECTRA_HELMET_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "STEEL_HELMET",      "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "KEVLAR_HELMET",     "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "KEVLAR_HELMET_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "KEVLAR_HELMET_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "SPECTRA_HELMET",    "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "SPECTRA_HELMET_18", "isExtra": true},
+    {"type": "ATTACH", "item": "SUNGOGGLES", "baseItem": "SPECTRA_HELMET_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "STEEL_HELMET",      "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "KEVLAR_HELMET",     "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "KEVLAR_HELMET_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "KEVLAR_HELMET_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "SPECTRA_HELMET",    "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "SPECTRA_HELMET_18", "isExtra": true},
+    {"type": "ATTACH", "item": "ROBOT_REMOTE_CONTROL", "baseItem": "SPECTRA_HELMET_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "KEVLAR_LEGGINGS",     "isExtra": true},
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "KEVLAR_LEGGINGS_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "KEVLAR_LEGGINGS_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "SPECTRA_LEGGINGS",    "isExtra": true},
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "SPECTRA_LEGGINGS_18", "isExtra": true},
+    {"type": "ATTACH", "item": "BREAK_LIGHT", "baseItem": "SPECTRA_LEGGINGS_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "KEVLAR_LEGGINGS",     "isExtra": true},
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "KEVLAR_LEGGINGS_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "KEVLAR_LEGGINGS_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "SPECTRA_LEGGINGS",    "isExtra": true},
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "SPECTRA_LEGGINGS_18", "isExtra": true},
+    {"type": "ATTACH", "item": "REGEN_BOOSTER", "baseItem": "SPECTRA_LEGGINGS_Y",  "isExtra": true},
+
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "KEVLAR_LEGGINGS",     "isExtra": true},
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "KEVLAR_LEGGINGS_18",  "isExtra": true},
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "KEVLAR_LEGGINGS_Y",   "isExtra": true},
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "SPECTRA_LEGGINGS",    "isExtra": true},
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "SPECTRA_LEGGINGS_18", "isExtra": true},
+    {"type": "ATTACH", "item": "ADRENALINE_BOOSTER", "baseItem": "SPECTRA_LEGGINGS_Y",  "isExtra": true},
+
+    /**
+     * Launchables
+     */
+    {"type": "LAUNCHABLE", "item": "GL_HE_GRENADE",      "baseItem": "GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_HE_GRENADE",      "baseItem": "UNDER_GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_TEARGAS_GRENADE", "baseItem": "GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_TEARGAS_GRENADE", "baseItem": "UNDER_GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_STUN_GRENADE",    "baseItem": "GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_STUN_GRENADE",    "baseItem": "UNDER_GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_SMOKE_GRENADE",   "baseItem": "GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "GL_SMOKE_GRENADE",   "baseItem": "UNDER_GLAUNCHER"},
+    {"type": "LAUNCHABLE", "item": "MORTAR_SHELL",       "baseItem": "MORTAR"},
+    {"type": "LAUNCHABLE", "item": "TANK_SHELL",         "baseItem": "TANK_CANNON"}
+
+    /**
+     * Simple merges
+     */
+    {"item": "FIRSTAIDKIT",    "baseItem": "FIRSTAIDKIT",   "result": "FIRSTAIDKIT",   "type": "COMBINE_POINTS"},
+    {"item": "MEDICKIT",       "baseItem": "MEDICKIT",      "result": "MEDICKIT",      "type": "COMBINE_POINTS"},
+    {"item": "LOCKSMITHKIT",   "baseItem": "LOCKSMITHKIT",  "result": "LOCKSMITHKIT",  "type": "COMBINE_POINTS"},
+    {"item": "TOOLKIT",        "baseItem": "TOOLKIT",       "result": "TOOLKIT",       "type": "COMBINE_POINTS"},
+    {"item": "GAS_CAN",        "baseItem": "GAS_CAN",       "result": "GAS_CAN",       "type": "COMBINE_POINTS"},
+    {"item": "CAMOUFLAGEKIT",  "baseItem": "CAMOUFLAGEKIT", "result": "CAMOUFLAGEKIT", "type": "COMBINE_POINTS"},
+    {"item": "BEER",    "baseItem": "BEER",    "result": "BEER",    "type": "COMBINE_POINTS"},
+    {"item": "WINE",    "baseItem": "WINE",    "result": "WINE",    "type": "COMBINE_POINTS"},
+    {"item": "ALCOHOL", "baseItem": "ALCOHOL", "result": "ALCOHOL", "type": "COMBINE_POINTS"},
+    {"item": "CANTEEN", "baseItem": "CANTEEN", "result": "CANTEEN", "type": "COMBINE_POINTS"},
+
+    {"item": "COMPOUND18",  "baseItem": "FLAK_JACKET",       "result": "FLAK_JACKET_18",   "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_VEST",       "result": "KEVLAR_VEST_18",   "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR2_VEST",      "result": "KEVLAR2_VEST_18",  "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_VEST",      "result": "SPECTRA_VEST_18",  "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "LEATHER_JACKET_W_KEVLAR", "result": "LEATHER_JACKET_W_KEVLAR_18",   "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_LEGGINGS",   "result": "KEVLAR_LEGGINGS_18",  "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_LEGGINGS",  "result": "SPECTRA_LEGGINGS_18", "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_HELMET",     "result": "KEVLAR_HELMET_18",    "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_HELMET",    "result": "SPECTRA_HELMET_18",   "type": "TREAT_ARMOUR"},
+    {"item": "COMPOUND18",  "baseItem": "FLAK_JACKET_Y",     "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_VEST_Y",     "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR2_VEST_Y",    "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_VEST_Y",    "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "LEATHER_JACKET_W_KEVLAR_Y", "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_LEGGINGS_Y",  "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_LEGGINGS_Y", "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "KEVLAR_HELMET_Y",    "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "COMPOUND18",  "baseItem": "SPECTRA_HELMET_Y",   "result": "NOTHING",   "type": "DESTRUCTION"},
+
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "FLAK_JACKET",  "result": "FLAK_JACKET_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_VEST",  "result": "KEVLAR_VEST_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_VEST", "result": "SPECTRA_VEST_Y",  "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "LEATHER_JACKET_W_KEVLAR",    "result": "LEATHER_JACKET_W_KEVLAR_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR2_VEST",        "result": "KEVLAR2_VEST_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_LEGGINGS",     "result": "KEVLAR_LEGGINGS_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_LEGGINGS",    "result": "SPECTRA_LEGGINGS_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_HELMET",       "result": "KEVLAR_HELMET_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_HELMET",      "result": "SPECTRA_HELMET_Y",   "type": "TREAT_ARMOUR"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "FLAK_JACKET_18",      "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_VEST_18",      "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR2_VEST_18",     "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_VEST_18",     "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "LEATHER_JACKET_W_KEVLAR_18",    "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_LEGGINGS_18",  "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_LEGGINGS_18", "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "KEVLAR_HELMET_18",    "result": "NOTHING",   "type": "DESTRUCTION"},
+    {"item": "JAR_QUEEN_CREATURE_BLOOD",  "baseItem": "SPECTRA_HELMET_18",   "result": "NOTHING",   "type": "DESTRUCTION"},
+
+    {"item": "RDX", "baseItem": "TNT", "result": "HMX", "type": "EXPLOSIVE"},
+    {"item": "RDX", "baseItem": "C1",  "result": "C4",  "type": "EXPLOSIVE"},
+    {"item": "TNT", "baseItem": "RDX", "result": "HMX", "type": "EXPLOSIVE"},
+    {"item": "C1",  "baseItem": "RDX", "result": "C4",  "type": "EXPLOSIVE"},
+
+    {"item": "STRING",  "baseItem": "TIN_CAN",  "result": "STRING_TIED_TO_TIN_CAN",  "type": "EASY_MERGE"},
+    {"item": "TIN_CAN", "baseItem": "STRING",   "result": "STRING_TIED_TO_TIN_CAN",  "type": "EASY_MERGE"},
+
+    {"item": "FLASH_DEVICE",  "baseItem": "DISPLAY_UNIT",    "result": "XRAY_DEVICE",  "type": "ELECTRONIC_MERGE"},
+    {"item": "DISPLAY_UNIT",  "baseItem": "FLASH_DEVICE",    "result": "XRAY_DEVICE",  "type": "ELECTRONIC_MERGE"},
+
+    /**
+     * Combo merges
+     */
+    {"baseItem": "ALUMINUM_ROD", "attachments": ["SPRING", "NOTHING"],        "result": "SPRING_AND_BOLT_UPGRADE", "type":  "COMBO_MERGE"},
+    {"baseItem": "STEEL_ROD",    "attachments": ["QUICK_GLUE", "DUCT_TAPE"],  "result": "GUN_BARREL_EXTENDER", "type":  "COMBO_MERGE"},
+    {"baseItem": "FUMBLE_PAK",   "attachments": ["XRAY_BULB", "CHEWING_GUM"], "result": "FLASH_DEVICE", "type":  "COMBO_MERGE"},
+    {"baseItem": "LAME_BOY",     "attachments": ["COPPER_WIRE", "NOTHING"],   "result": "DISPLAY_UNIT", "type":  "COMBO_MERGE"}
+]
