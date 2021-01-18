@@ -16,14 +16,14 @@ struct CalibreModel;
 #define GUN_BARREL_RANGE_BONUS				100
 
 // Special deaths can only occur within a limited distance to the target
-#define MAX_DISTANCE_FOR_MESSY_DEATH			7
+#define MAX_DISTANCE_FOR_MESSY_DEATH			21
 // If you do a lot of damage with a close-range shot, instant kill
-#define MIN_DAMAGE_FOR_INSTANT_KILL			55
+#define MIN_DAMAGE_FOR_INSTANT_KILL			40
 // If you happen to kill someone with a close-range shot doing a lot of damage to the head, head explosion
-#define MIN_DAMAGE_FOR_HEAD_EXPLOSION			45
+#define MIN_DAMAGE_FOR_HEAD_EXPLOSION			30
 // If you happen to kill someone with a close-range shot doing a lot of damage to the chest, chest explosion
 // This value is lower than head because of the damage bonus for shooting the head
-#define MIN_DAMAGE_FOR_BLOWN_AWAY			30
+#define MIN_DAMAGE_FOR_BLOWN_AWAY			20
 // If you happen to hit someone in the legs for enough damage, REGARDLESS of distance, person falls down
 // Leg damage is halved for these purposes
 #define MIN_DAMAGE_FOR_AUTO_FALL_OVER			20
