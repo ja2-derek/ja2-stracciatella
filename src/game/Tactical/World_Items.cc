@@ -285,7 +285,7 @@ void LoadWorldItemsFromMap(HWFILE const f)
 			if (item->getFlags() & ITEM_NOT_EDITOR) {
 				// This item is not placable by Editor. Maybe the map was created for a different item set.
 				SLOGW("Skipping non-Editor item #{}({}) at gridNo {}", item->getItemIndex(), item->getInternalName(), wi.sGridNo);
-				continue;
+				//continue;
 			}
 
 			if (!gGameOptions.fGunNut)
